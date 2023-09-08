@@ -1,0 +1,14 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<h2> 새 비밀번호 입력 </h2>
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table}}
+    </table>
+    <input type="submit" />
+</form>
+
+{% endblock %}

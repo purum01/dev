@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1> 내정보 </h1>
+    <ul>
+        <li> name : {{user}}</li>
+        <li> email : {{user.email}}</li>
+        <li> tel : {{user.profile.phone_number}}</li>
+        <li> address : {{user.profile.address}}</li>
+        <li>{{user.date_joined}}</li>
+    </ul>
+    <a href="{% url 'password_change' %}">[암호 변경하기]</a>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/admin.css" %}" />
+{% endblock %}
+
+{% block title %}Order {{ order.id }} {{ block.super }}{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url "admin:index" %}">Home</a> &rsaquo;
+        <a href="{% url "admin:orders_order_changelist" %}">Orders</a> &rsaquo;
+        <a href="{% url "admin:orders_order_change" order.id %}">Order {{ order.id }}</a> &rsaquo;
+        Detail
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h1>주문서 {{ order.id }}</h1>
+    <ul class="object-tools">
+        <li>
+            <a href="#" onclick="window.print();">주문서 출력</a>
+        </li>
+    </ul>
+    <table>
+        <tr>
+            <th>주문일</th>
+            <td>{{ order.created }}</td>
+        </tr>
+        <tr>
+            <th>주문자</th>
+            <td>{{ order.name }}</td>
+        </tr>
+        <tr>
+            <th>이메일</th>
+            <td><a href="mailto:{{ order.email }}">{{ order.email }}</a></td>
+        </tr>
+        <tr>
+            <th>주소</th>
+            <td>{{ order.address }}</td>
+        </tr>
+        <tr>
+            <th>전화번호</th>
+            <td>{{ order.tel }}</td>
+        </tr>
+        <tr>
+            <th>총금액</th>
+            <td>{{ order.get_total_cost | intcomma }}</td>
+        </tr>
+        <tr>
+            <th>지불 상태</th>
+            <td>{% if order.paid %}지불 완료{% else %}지불 보류{% endif %}</td>
+        </tr>
+    </table>
+
+    <div class="module">
+        <div class="tabular inline-related last-related">
+            <table>
+                <h2>주문 상품</h2>
+                <thead>
+                    <tr>
+                        <th>상품</th>
+                        <th class="num">단가</th>
+                        <th class="num">수량</th>
+                        <th class="num">금액</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in order.items.all %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td class="num">{{ item.price | intcomma}}</td>
+                        <td class="num">{{ item.quantity }}</td>
+                        <td class="num">{{ item.get_cost | intcomma }}</td>
+                    </tr>
+                {% endfor %}
+                {% if order.coupon %}
+                    <tr>
+                        <td colspan="3">"{{ order.coupon.code }}" coupon ({{ order.discount }}% off)</td>
+                        <td class="num">-{{ order.get_total_discount | intcomma}}</td>
+                    </tr>
+                {% endif %}
+                    <tr class="total">
+                        <td colspan="3">지불 금액</td>
+                        <td class="num">{{ order.get_total_cost | intcomma }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

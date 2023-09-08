@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block title %}
+  Book 등록
+{% endblock %}
+{% block content %}
+  <h1>Book 등록</h1>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <table>{{ form.as_table }}</table>
+    <input type="submit" value="등록" />
+  </form>
+{% endblock %}

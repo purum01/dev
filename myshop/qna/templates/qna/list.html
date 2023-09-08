@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Q&A
+{% endblock %}
+
+{% block content %}
+    <h1>Q&A</h1>
+    <div class="text-right">
+        <a href="{% url 'qna:add' %}">글쓰기</a>
+    </div>
+    <table class="cart">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성일</th>
+                <th>작성자</th>
+                <th>답변상태</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question in question_list %}
+            <tr>
+                <td>{{question.id}}</td>
+                <td><a href="{% url 'qna:detail' question.id %}"> {{question.title}}</td>
+                <td>{{question.updated_at|date:'Y.m.d'}}</td>
+                <td>{{question.user}}</td>
+                <td class='field-status'>
+                    {% if question.status %}
+                        <img src="/static/admin/img/icon-yes.svg">
+                    {% else %}
+                        <img src="/static/admin/img/icon-no.svg">
+                    {% endif %}
+                </td>
+                {% if request.user == question.user %}
+                    <td>
+                        <form action="{% url 'qna:update' question.id %}" method="get">
+                            <input type="submit" value="수정">
+                            {% csrf_token %}
+                        </form>
+                    </td>
+                    <td>
+                        <form action="{% url 'qna:remove' question.id %}"" method="post">
+                            <input type="submit" value="삭제">
+                            {% csrf_token %}
+                        </form>
+                    </td>      
+                {% else%}
+                    <td></td>
+                    <td></td>          
+                {%endif%}
+               
+            </tr>
+        {% endfor%}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}회원 가입{% endblock %}
+{% block content %}
+  <h1>회원 가입</h1>
+  <form method="post">
+    {{ form.as_ul }}
+    {% csrf_token %}
+    <p><input type="submit" value="가입"></p>
+  </form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Q&A
+{% endblock %}
+
+{% block content %}
+    <h1>Q&A</h1>
+    <div id="qna">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="전송">
+        </form>
+    </div>
+
+{% endblock %}

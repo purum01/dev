@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %} Book 목록 {% endblock %}
+{% block content %}
+    <h1>Book 목록 보기</h1>
+    {% for book in book_list %}
+        <a href="{% url 'book:detail' book.id %}"> {{book.title}}</a><br>
+    {% endfor %}
+    <a href="{% url 'book:create' %}">[새 책 등록]</a>
+{% endblock %}

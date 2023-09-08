@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %} Form Test {% endblock %}
+{% block content %}
+    <form action="" method="post" enctype="multipart/form-data">    
+        {% csrf_token %}
+        아이디 : <input type="text" name="id" value="user1"><br>
+        비밀번호 : <input type="password" name="pwd" value="12345"><br>
+        사진 : <input type="file" name="image"><br>
+        성별 :     
+        <input type="radio" name="gender" value="male" checked > 남자
+        <input type="radio" name="gender" value="female"> 여자 <br>
+        
+        관심분야:
+        <input type="checkbox" name="interest" value="AI" checked >인공지능 
+        <input type="checkbox" name="interest" value="BD">빅데이터 
+        <input type="checkbox" name="interest" value="DA" checked >데이터 분석 <br>
+
+        연령대:
+        <select name="age">
+            <option value="2">20대</option>
+            <option value="3">30대</option>
+            <option value="4" selected >40대</option>         
+        </select><br>
+
+        참고 사항: <br>
+        <textarea cols="30" rows="10" name="remark">통계학 전공</textarea><br>
+        <input type="submit" value="확인">
+    </form>
+{% endblock %}
+

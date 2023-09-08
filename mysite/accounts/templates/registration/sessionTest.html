@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+   
+    <h1> Session Test </h1>
+    <h2 style="color:green">
+        {{request.user}}
+    </h2>
+    <h2 style="color:red">
+        {{request.session.session_key}}
+    </h2>
+    
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %}주문{% endblock %}
+
+{% block content %}
+    <h1>배송 정보 입력</h1>
+
+    <div class="order-info">
+        <h3>주문 내역</h3>
+        <ul>
+            {% for item in cart %}
+                <li>
+                    {{item.product.name}} {{item.quantity}}개
+                    <span class="text-right">{{item.total_price|intcomma}}원</span>
+                </li>
+            {% endfor %}
+            {% if cart.has_coupon %}
+                <li>
+                    "{{ cart.coupon.code }}" ({{ cart.coupon.discount }}% off)
+                    <span class="neg"> - {{ cart.get_discount|intcomma}}원</span>
+                </li>
+            {% endif %}
+        </ul>
+        <p>Total: {{ cart.get_total_price_after_discount|intcomma}}원</p>
+    </div>
+    <form action="" method="post" class="order-form">
+        {{form.as_p}}
+        {% csrf_token %}
+        <input type="hidden" name="pre_order_id" value="0">
+        <input type="hidden" name="amount" value="{{ cart.get_total_price_after_discount|floatformat:"2" }}">
+        <p><input type="submit" value="주문하기"></p>
+    </form>
+{% endblock %}
+
+
+
+
+
+
+

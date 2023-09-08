@@ -1,0 +1,9 @@
+<html>
+  <head></head>
+  <body>
+    <h1> 이미지 목록 </h1>
+    {% for image in image_list %}
+      <li><a href="{% url 'gallery:image_detail' image.id %}">{{image}}</a></li>
+    {% endfor %}
+  </body>
+</html>

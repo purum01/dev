@@ -1,0 +1,11 @@
+<html>
+   <head></head>
+   <body>
+      <h1>이미지 등록</h1>
+      <form action="" method="post" enctype="multipart/form-data">
+         {{ form.as_p }}
+         {% csrf_token %}
+      <p><input type="submit" value="등록"></p>
+      </form>
+   </body>
+</html>

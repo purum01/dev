@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Q&A
+{% endblock %}
+
+{% block  content %}
+    <h1>Question</h1>
+        <table class="qna">
+            <tr>
+                <td>
+                    {{form.as_p}}
+                </td>
+            </tr>
+        </table>
+
+    <h1>Answer</h1>
+    {% if answer_list %}
+        {% for answer in answer_list%}
+                {{answer.content}} <br>
+        {% endfor%}
+    {% else %}
+        빠르게 답변 드리겠습니다
+    {% endif %}
+    
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>암호 리셋 요청하기</h2>
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table}}
+    </table>
+    <input type="submit" />
+</form>
+{% endblock %}

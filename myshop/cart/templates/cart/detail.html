@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+    Your shopping cart
+{% endblock %}
+
+{% block content %}
+    <h1>Your shopping cart</h1>
+    <table class="cart">
+        <thead>
+            <tr>
+                <th></th>
+                <th>상품명</th>
+                <th>수량</th>
+                <th>삭제</th>
+                <th class="text-right">단가</th>                
+                <th class="text-right">금액</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+            <tr>
+                <td>
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                    </a>
+                </td>
+                <td>{{ product.name }}</td>
+                <td>
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                        {{ item.override_quantity_form.quantity }}
+                        {{ item.override_quantity_form.update }}
+                        <input type="submit" value="수정">
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <td>
+                    <form action="{% url 'cart:cart_remove' product.id %}"" method="post">
+                        <input type="submit" value="삭제">
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <td class="num">{{ item.price|intcomma}}원</td>
+                <td class="num">{{ item.total_price|intcomma}}원</td>
+            </tr>
+            {% endwith %}
+        {% endfor %}
+
+        {% if cart.has_coupon %}
+            <tr class="subtotal">
+                <td>Subtotal</td>
+                <td colspan="4"></td>
+                <td class="num">{{ cart.get_total_price|intcomma }}</td>
+            </tr>
+            <tr>
+                    <td>"{{ cart.coupon.code }}" coupon ({{ cart.coupon.discount }}% off)</td>
+                <td colspan="4"></td>
+                <td class="num neg">- {{ cart.get_discount|intcomma }}</td>
+            </tr>
+        {% endif %}
+        <tr class="total">
+            <td>Total</td>
+            <td colspan="4"></td>
+            <td class="num">{{ cart.get_total_price_after_discount|intcomma}}원</td>
+        </tr>
+        </tbody>
+    </table>
+    
+    <form action="{% url 'coupons:apply' %}" method="post">
+        {{ coupon_apply_form }}
+        <input type="submit" value="적용">
+        {% csrf_token %}
+    </form>
+    <p class="text-right">
+        <a href="{% url 'shop:product_list' %}" class="button light">쇼핑 계속하기</a>
+        <a href="{% url 'orders:order_create' %}" class="button">주문하기</a>
+        <a href="{% url 'cart:cart_clear' %}" class="button light">장바구니 비우기</a>
+    </p>
+{% endblock %}
