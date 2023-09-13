@@ -56,7 +56,7 @@
 ## 장고 auth app
 * [auth 앱 코드](https://github.com/django/django/tree/main/django/contrib/auth)
 * [auth 환경변수](https://github.com/django/django/blob/main/django/conf/global_settings.py#L524)
-* [auth context_processors](django.contrib.auth.context_processors.auth)
+* [auth context_processors](https://github.com/django/django/blob/main/django/contrib/auth/context_processors.py#L49)
 * [auth urls.py](https://github.com/django/django/blob/main/django/contrib/auth/urls.py)
 * [UserCreationForm](https://github.com/django/django/blob/main/django/contrib/auth/forms.py#L149)
 
