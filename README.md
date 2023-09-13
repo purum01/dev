@@ -73,7 +73,8 @@
 ## 장고 Session
 * [SessionMiddleware](https://github.com/django/django/blob/4.2/django/contrib/sessions/middleware.py)
 * [SessionStore](https://github.com/django/django/blob/stable/4.2.x/django/contrib/sessions/backends/db.py)
-* [How to use sessions](https://docs.djangoproject.com/en/4.2/topics/http/sessions/)
+* [MiddlewareMixin](https://github.com/django/django/blob/main/django/utils/deprecation.py#L96)
+
 
 ## Django REST framework
 * [장고 공식사이트](https://www.django-rest-framework.org/)
