@@ -77,7 +77,7 @@
 
 
 ## Django REST framework
-* [장고 공식사이트](https://www.django-rest-framework.org/)
+* [django REST framework](https://www.django-rest-framework.org/)
 * [DRF CBV((cdrf)](https://www.cdrf.co/)
 
 
