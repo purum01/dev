@@ -79,5 +79,6 @@
 ## Django REST framework
 * [django REST framework](https://www.django-rest-framework.org/)
 * [DRF CBV((cdrf)](https://www.cdrf.co/)
+* [get_previous_by_](https://docs.djangoproject.com/en/5.0/ref/models/instances/#django.db.models.Model.get_next_by_FOO)
 
 
