@@ -74,7 +74,7 @@
 * [SessionMiddleware](https://github.com/django/django/blob/4.2/django/contrib/sessions/middleware.py)
 * [SessionStore](https://github.com/django/django/blob/stable/4.2.x/django/contrib/sessions/backends/db.py)
 * [MiddlewareMixin](https://github.com/django/django/blob/main/django/utils/deprecation.py#L96)
-
+*[user_logged_in](https://github.com/django/django/blob/main/django/contrib/auth/signals.py)
 
 ## Django REST framework
 * [django REST framework](https://www.django-rest-framework.org/)
