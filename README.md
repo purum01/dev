@@ -71,6 +71,7 @@
 * [post_save](https://docs.djangoproject.com/en/4.2/ref/signals/#post-save)
 
 ## 장고 Session
+* [session 환경변수](https://github.com/django/django/blob/main/django/conf/global_settings.py#L479)
 * [SessionMiddleware](https://github.com/django/django/blob/4.2/django/contrib/sessions/middleware.py)
 * [SessionStore](https://github.com/django/django/blob/stable/4.2.x/django/contrib/sessions/backends/db.py)
 * [MiddlewareMixin](https://github.com/django/django/blob/main/django/utils/deprecation.py#L96)
